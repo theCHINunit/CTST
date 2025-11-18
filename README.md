@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('Tosca Modern Creative Web Development Presentation');
+      background-image: url('Tosca Modern Creative Web Development Presentation.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
