@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('https://i.ibb.co/7JYVZ3v/modern-background.png'); /* link nền trực tuyến */
+      background-image: url('Tosca Modern Creative Web Development Presentation');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
