@@ -90,7 +90,7 @@
 
     <!-- Mục Mật khẩu -->
     <div id="mucMK" class="hidden">
-      <h2>Bạn đã chọn sai quá 10 lần!</h2>
+      <h2>Bạn đã chọn sai quá 5 lần!</h2>
       <p>Nhập mật khẩu để mở Mục 3:</p>
 
       <p style="font-size:14px; color:#ffd966;">
@@ -165,7 +165,7 @@
         document.getElementById('muc3').classList.add('hidden');
         demSai.textContent = `Số lần sai: ${soLanSai}`;
 
-        if(soLanSai >= 10){
+        if(soLanSai >= 6){
           document.getElementById('mucMK').classList.remove('hidden');
         }
       }
@@ -175,7 +175,7 @@
       const mk = document.getElementById('matKhau').value;
       const thongBaoMK = document.getElementById('thongBaoMK');
 
-      if(mk === MAT_KHAU_DUNG){
+      if(mk.toUpperCase() === MAT_KHAU_DUNG){
         thongBaoMK.textContent = "Mở khóa thành công!";
         thongBaoMK.className = "msg ok";
         document.getElementById('muc3').classList.remove('hidden');
