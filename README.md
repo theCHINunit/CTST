@@ -133,7 +133,9 @@
     function kiemTraTinhTiet(){
       const checked = Array.from(document.querySelectorAll('#formTinhTiet input:checked')).map(cb => cb.value);
       const ketQua2 = document.getElementById('ketQua2');
-      const correct = ['1','2']; // Lời khai của bà Hân và Chiết xuất camera
+
+      // ★ Đáp án đúng: 1, 2, 6
+      const correct = ['1','2','6'];
 
       if(arraysEqual(checked, correct)){
         ketQua2.textContent = 'Đúng rồi!';
