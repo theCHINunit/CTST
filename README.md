@@ -37,9 +37,7 @@
     button:hover {
       background-color: darkred;
     }
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
     p.msg {
       font-weight: bold;
       margin-top: 8px;
@@ -81,6 +79,7 @@
       </form>
       <button onclick="kiemTraTinhTiet()">Xác nhận</button>
       <p id="ketQua2" class="msg"></p>
+      <p id="demSai" class="msg"></p>
     </div>
 
     <!-- Mục 3 -->
@@ -88,9 +87,26 @@
       <h2>Mục 3: Chân tướng</h2>
       <a href="https://docs.google.com/document/d/1r9ZSYgqvA0Fp_bFw47HmLhms1p3VuiYxmTSjKdEk-Es/edit?hl=vi&tab=t.0" target="_blank">Xem sự thật tại đây</a>
     </div>
+
+    <!-- Mục Mật khẩu -->
+    <div id="mucMK" class="hidden">
+      <h2>Bạn đã chọn sai quá 10 lần!</h2>
+      <p>Nhập mật khẩu để mở Mục 3:</p>
+
+      <p style="font-size:14px; color:#ffd966;">
+        Gợi ý: theo thứ tự thụt dòng trên bàn phím: 3-3 1-2 7-1 5-2 6-2 5-1
+      </p>
+
+      <input type="password" id="matKhau" placeholder="Nhập mật khẩu...">
+      <button onclick="kiemTraMK()">Mở khóa</button>
+      <p id="thongBaoMK" class="msg"></p>
+    </div>
   </div>
 
   <script>
+    let soLanSai = 0;
+    const MAT_KHAU_DUNG = "CAUGHT";
+
     function normalizeVietnamese(str){
       if(!str) return '';
       try{ str = str.normalize('NFD'); }catch(e){}
@@ -133,18 +149,39 @@
     function kiemTraTinhTiet(){
       const checked = Array.from(document.querySelectorAll('#formTinhTiet input:checked')).map(cb => cb.value);
       const ketQua2 = document.getElementById('ketQua2');
+      const demSai = document.getElementById('demSai');
 
-      // ★ Đáp án đúng: 1, 2, 6
       const correct = ['1','2','6'];
 
       if(arraysEqual(checked, correct)){
         ketQua2.textContent = 'Đúng rồi!';
         ketQua2.className = 'msg ok';
         document.getElementById('muc3').classList.remove('hidden');
+
       } else {
+        soLanSai++;
         ketQua2.textContent = 'Ôi có lẽ bạn đã phán đoán sai rồi';
         ketQua2.className = 'msg wrong';
         document.getElementById('muc3').classList.add('hidden');
+        demSai.textContent = `Số lần sai: ${soLanSai}`;
+
+        if(soLanSai >= 10){
+          document.getElementById('mucMK').classList.remove('hidden');
+        }
+      }
+    }
+
+    function kiemTraMK(){
+      const mk = document.getElementById('matKhau').value;
+      const thongBaoMK = document.getElementById('thongBaoMK');
+
+      if(mk === MAT_KHAU_DUNG){
+        thongBaoMK.textContent = "Mở khóa thành công!";
+        thongBaoMK.className = "msg ok";
+        document.getElementById('muc3').classList.remove('hidden');
+      } else {
+        thongBaoMK.textContent = "Sai mật khẩu!";
+        thongBaoMK.className = "msg wrong";
       }
     }
   </script>
